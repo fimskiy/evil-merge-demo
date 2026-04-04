@@ -1,1 +1,12 @@
-
+{
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {"type": "Point", "coordinates": [0, 0]},
+    "properties": {
+      "name": "<img src=x onerror=alert(document.domain)>",
+      "description": "<script>alert(1)</script>",
+      "popupContent": "<a href=javascript:alert(2)>click</a>"
+    }
+  }]
+}
